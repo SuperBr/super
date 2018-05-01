@@ -81,7 +81,7 @@
                                 <copy tofile="${basedir}/target/docker/app.jar">
                                     <fileset file="${basedir}/target/${artifactId}-${version}.jar"></fileset>
                                 </copy>
-                                <copy todir="${basedir}/target/bin">
+                                <copy todir="${basedir}/target/docker/bin">
                                     <fileset dir="src/main/bin"></fileset>
                                 </copy>
                                 <copy todir="${basedir}/target/docker/lib">
