@@ -84,6 +84,9 @@
                                 <copy todir="${basedir}/target/bin">
                                     <fileset dir="src/main/bin"></fileset>
                                 </copy>
+                                <copy todir="${basedir}/target/docker/lib">
+                                    <fileset dir="${basedir}/target/lib"></fileset>
+                                </copy>
 
                             </target>
                         </configuration>
