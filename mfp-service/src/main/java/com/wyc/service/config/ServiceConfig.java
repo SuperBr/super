@@ -20,9 +20,9 @@ public class ServiceConfig implements Aware {
     @Bean
     public DataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl(environment.getProperty("spring.datasource.url"));
-        dataSource.setUsername(environment.getProperty("spring.datasource.username"));
-        dataSource.setPassword(environment.getProperty("spring.datasource.password"));
+        dataSource.setUrl(dataSourceBean.getDateSourceUrl());
+        dataSource.setUsername(dataSourceBean.getDateSourceUserName());
+        dataSource.setPassword(dataSourceBean.getDateSourcePassWd());
         return dataSource;
     }
 }
