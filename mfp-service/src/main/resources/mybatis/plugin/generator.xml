@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动包位置 -->
+    <classPathEntry
+            location="D:\eclipse\workspace\vip_admin\WebContent\WEB-INF\lib\mysql-connector-java-5.1.6-bin.jar"/>
+    <context id="context1">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://IP:PORT/springmvc" userId="root" password="root"/>
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="com.zp.bean" targetProject="vip_admin/mbg"/>
+        <!-- 生成的映射文件报名和位置 -->
+        <sqlMapGenerator targetPackage="com.zp.dao.mapper" targetProject="vip_admin/mbg"/>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator targetPackage="com.zp.dao" targetProject="vip_admin/mbg" type="XMLMAPPER"/>
+        <!-- 要生成的那些表(更改tableName 和domainObjectName 就可以了) -->
+        <table schema="springmvc" tableName="studentinfo" domainObjectName="StudentInfoVO" enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <columnOverride column="id" property="id"/>
+            <columnOverride column="name" property="name"/>
+            <columnOverride column="classname" property="classname"/>
+            <columnOverride column="teacher_id" property="teacherId"/>
+            <columnOverride column="comment" property="comment"/>
+            <columnOverride column="type" property="type"/>
+        </table>
+    </context>
+</generatorConfiguration>
