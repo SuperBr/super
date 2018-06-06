@@ -2,34 +2,66 @@
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
 <generatorConfiguration>
+
+    <properties resource="mybatis/plugin/generator-config.properties"/>
     <!-- 数据库驱动包位置 -->
     <classPathEntry
-            location="D:\eclipse\workspace\vip_admin\WebContent\WEB-INF\lib\mysql-connector-java-5.1.6-bin.jar"/>
-    <context id="context1">
+            location="${jdbc.driverPath}"/>
+
+    <context id="context1" targetRuntime="MyBatis3">
+
+
+        <property name="autoDelimitKeywords" value="false"/>
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <!-- 此处是将Example改名为Criteria 当然 想改成什么都行~    -->
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$" />
+            <property name="replaceString" value="Criteria" />
+
+        </plugin>
+        <!-- 此处是将UserMapper.xml改名为UserDao.xml 当然 想改成什么都行~ -->
+        <plugin type="org.mybatis.generator.plugins.rename.RenameSqlMapperPlugin">
+            <property name="searchString" value="Mapper" />
+            <property name="replaceString" value="Dao" />
+        </plugin>
+
+        <!-- 此处是将UserMapper改名为UserDao 接口 当然 想改成什么都行~  -->
+        <plugin type="org.mybatis.generator.plugins.rename.RenameJavaMapperPlugin">
+            <property name="searchString" value="Mapper$" />
+            <property name="replaceString" value="Dao" />
+        </plugin>
+
+
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!-- 数据库链接URL、用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://IP:PORT/springmvc" userId="root" password="root"/>
+        <jdbcConnection driverClass="${jdbc.driverClassName}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}"
+                        password="${jdbc.password}"/>
         <!-- 生成模型的包名和位置 -->
-        <javaModelGenerator targetPackage="com.zp.bean" targetProject="vip_admin/mbg"/>
+        <javaModelGenerator targetPackage="com.wyc.api.model" targetProject="../mfp-api/src/main/java"/>
         <!-- 生成的映射文件报名和位置 -->
-        <sqlMapGenerator targetPackage="com.zp.dao.mapper" targetProject="vip_admin/mbg"/>
+        <sqlMapGenerator targetPackage="mybatis/xmlMapper" targetProject="src/main/resources"/>
         <!-- 生成DAO的包名和位置 -->
-        <javaClientGenerator targetPackage="com.zp.dao" targetProject="vip_admin/mbg" type="XMLMAPPER"/>
+        <javaClientGenerator targetPackage="com.wyc.service.dao" targetProject="src/main/java" type="XMLMAPPER"/>
         <!-- 要生成的那些表(更改tableName 和domainObjectName 就可以了) -->
-        <table schema="springmvc" tableName="studentinfo" domainObjectName="StudentInfoVO" enableCountByExample="true"
+        <table tableName="mfp_suber"
+               enableCountByExample="true"
                enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
-            <columnOverride column="id" property="id"/>
-            <columnOverride column="name" property="name"/>
-            <columnOverride column="classname" property="classname"/>
-            <columnOverride column="teacher_id" property="teacherId"/>
-            <columnOverride column="comment" property="comment"/>
-            <columnOverride column="type" property="type"/>
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
         </table>
     </context>
 </generatorConfiguration>

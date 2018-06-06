@@ -34,6 +34,12 @@
             <artifactId>druid</artifactId>
             <version>1.0.29</version>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.44</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -96,7 +102,7 @@
                                     <fileset dir="src/main/docker"></fileset>
                                 </copy>
                                 <copy tofile="${basedir}/target/docker/app.jar">
-                                    <fileset file="${basedir}/target/${artifactId}-${version}.jar"></fileset>
+                                    <fileset file="${basedir}/target/${project.artifactId}-${project.version}.jar"></fileset>
                                 </copy>
                                 <copy todir="${basedir}/target/docker/bin">
                                     <fileset dir="src/main/bin"></fileset>
@@ -116,9 +122,9 @@
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.2</version>
+                <version>1.3.4</version>
                 <configuration>
-                    <configurationFile>src/main/resources/mybatis-generator/generatorConfig.xml</configurationFile>
+                    <configurationFile>src/main/resources/mybatis/plugin/generator.xml</configurationFile>
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>
                 </configuration>
@@ -134,7 +140,7 @@
                     <dependency>
                         <groupId>org.mybatis.generator</groupId>
                         <artifactId>mybatis-generator-core</artifactId>
-                        <version>1.3.2</version>
+                        <version>1.3.4</version>
                     </dependency>
                 </dependencies>
             </plugin>
