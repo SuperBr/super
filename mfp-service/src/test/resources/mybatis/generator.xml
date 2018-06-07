@@ -5,13 +5,12 @@
 
 <generatorConfiguration>
 
-    <properties resource="mybatis/plugin/generator-config.properties"/>
+    <properties  url="file:./src/test/resources/mybatis/generator-config.properties" />
     <!-- 数据库驱动包位置 -->
     <classPathEntry
             location="${jdbc.driverPath}"/>
 
     <context id="context1" targetRuntime="MyBatis3">
-
 
         <property name="autoDelimitKeywords" value="false"/>
         <!-- 生成的Java文件的编码 -->
@@ -21,23 +20,12 @@
         <!-- 格式化XML代码 -->
         <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
 
-        <!-- 此处是将Example改名为Criteria 当然 想改成什么都行~    -->
         <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
             <property name="searchString" value="Example$" />
             <property name="replaceString" value="Criteria" />
 
         </plugin>
         <!-- 此处是将UserMapper.xml改名为UserDao.xml 当然 想改成什么都行~ -->
-        <plugin type="org.mybatis.generator.plugins.rename.RenameSqlMapperPlugin">
-            <property name="searchString" value="Mapper" />
-            <property name="replaceString" value="Dao" />
-        </plugin>
-
-        <!-- 此处是将UserMapper改名为UserDao 接口 当然 想改成什么都行~  -->
-        <plugin type="org.mybatis.generator.plugins.rename.RenameJavaMapperPlugin">
-            <property name="searchString" value="Mapper$" />
-            <property name="replaceString" value="Dao" />
-        </plugin>
 
 
         <commentGenerator>
@@ -56,7 +44,7 @@
         <!-- 生成DAO的包名和位置 -->
         <javaClientGenerator targetPackage="com.wyc.service.dao" targetProject="src/main/java" type="XMLMAPPER"/>
         <!-- 要生成的那些表(更改tableName 和domainObjectName 就可以了) -->
-        <table tableName="mfp_suber"
+        <table tableName="ftp_suber"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
